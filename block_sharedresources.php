@@ -1,4 +1,4 @@
-<?php //$Id: block_sharedresources.php,v 1.3 2011-09-28 20:53:32 vf Exp $
+<?php //$Id: block_sharedresources.php,v 1.1 2013-02-13 21:58:19 wa Exp $
 
 class block_sharedresources extends block_base {
     function init() {
@@ -26,6 +26,7 @@ class block_sharedresources extends block_base {
             return $this->content;
         }
 
+        
         $convertallstr = get_string('convertall', 'block_sharedresources');
         $this->content->text = "<a href=\"{$CFG->wwwroot}/mod/sharedresource/admin_convertall.php?course={$COURSE->id}\">$convertallstr</a><br/><br/>";
 
@@ -36,7 +37,7 @@ class block_sharedresources extends block_base {
         $this->content->text .= "<a href=\"{$CFG->wwwroot}/blocks/sharedresources/importresourcesfromfiles.php?course=$COURSE->id\" title=\"{$importstr}\">$importstr</a><br/><br/>";
 		
 		$viewlibrarystr = get_string('viewlibrary', 'block_sharedresources');
-        $this->content->text .= "<a href=\"{$CFG->wwwroot}/resources/index.php?course={$COURSE->id}\">$viewlibrarystr</a>";
+        $this->content->text .= "<a href=\"{$CFG->wwwroot}/local/sharedresources/index.php?course={$COURSE->id}\">$viewlibrarystr</a>";
 
         $this->content->footer = '';
 
