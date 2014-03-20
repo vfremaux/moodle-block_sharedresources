@@ -1,6 +1,7 @@
 <?php
 
 $string['sharedresources:addinstance'] = 'Peut ajouter une instance';
+$string['sharedresources:myaddinstance'] = 'Peut ajouter une instance à la page personnalisée';
 
 $string['blockname'] = 'Ressources mutualisées';
 $string['builtentry'] = 'Ressource mutualisée enregistrée sous ID {$a}<br/>';

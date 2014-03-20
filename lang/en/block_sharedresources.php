@@ -1,6 +1,7 @@
 <?php
 
 $string['sharedresources:addinstance'] = 'Can add an instance';
+$string['sharedresources:myaddinstance'] = 'Can add an instance to My Page';
 
 $string['pluginname'] = 'Shared Resources Tools';
 $string['blockname'] = 'Shared Resources Tools';
