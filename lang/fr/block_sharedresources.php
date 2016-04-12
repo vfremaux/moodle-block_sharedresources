@@ -26,3 +26,5 @@ $string['resourcename'] = 'Nom de la ressource';
 $string['checkall'] = 'Sélectionner tout';
 $string['uncheckall'] = 'Tout désélectionner';
 $string['viewlibrary'] = 'Accéder à la librairie';
+$string['existsignorechanges'] = 'La ressource {$a->title} d\'ID {$a->identifier} existe. Les changements sont ignorés. ';
+$string['exists'] = 'La ressource {$a->title} d\'ID {$a->identifier} existe. Les métadonnées sont mises à jour. ';

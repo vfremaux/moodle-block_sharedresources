@@ -15,8 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    blocks
- * @subpackage block_sharedresources
+ * @package    block_sharedresources
+ * @category   blocks
  * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
@@ -26,7 +26,7 @@ require_once($CFG->libdir.'/formslib.php');
 
 class import_collect_form extends moodleform {
 
-    function definition() {
+    public function definition() {
 
         $mform = $this->_form;
 
@@ -38,6 +38,6 @@ class import_collect_form extends moodleform {
 
     }
 
-    function validation($data, $files = null) {
+    public function validation($data, $files = null) {
     }
 }

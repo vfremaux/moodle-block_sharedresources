@@ -14,11 +14,20 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-require_once $CFG->libdir.'/formslib.php';
+/**
+ *
+ * @package    block_sharedresources
+ * @category   blocks
+ * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
+ * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
+ */
 
-class metadata_collect_form extends moodleform{
+require_once($CFG->libdir.'/formslib.php');
 
-    function definition() {
+class metadata_collect_form extends moodleform {
+
+    public function definition() {
         global $USER;
 
         $itemid = $this->_customdata['entries'];
@@ -45,22 +54,22 @@ class metadata_collect_form extends moodleform{
             $fileid = $f->get_id();
             $mform->addElement('header', 'head'.$fileid, $f->get_filename());
 
-            // essential metadata
+            // Essential metadata.
             $mform->addElement('hidden', 'id'.$fileid, $fileid);
-            $mform->setType('id'.$fileid, PARAM_TEXT);
+            $mform->setType('id'.$fileid, PARAM_INT);
 
             $mform->addElement('text', 'title'.$fileid, get_string('title', 'block_sharedresources'), array('size' => 60));
             $mform->addRule('title'.$fileid, get_string('error'), 'required', '', 'client', false, false);
-            $mform->setType('title'.$fileid, PARAM_TEXT);
+            $mform->setType('title'.$fileid, PARAM_CLEANHTML);
 
             $mform->addElement('textarea', 'description'.$fileid, get_string('description'), array('cols' => 60, 'rows' => 4));
-            $mform->setType('description'.$fileid, PARAM_TEXT);
-
+            $mform->setType('description'.$fileid, PARAM_CLEANHTML);
             $mform->addRule('description'.$fileid, get_string('error'), 'required', '', 'client', false, false);
+
             $mform->addElement('text', 'keywords'.$fileid, get_string('keywords', 'block_sharedresources'), array('size' => 30));
             $mform->setType('keywords'.$fileid, PARAM_TEXT);
 
-            // sharing contexts
+            // Sharing contexts.
             $mform->addElement('select', 'context'.$fileid, get_string('sharingcontext', 'sharedresource'), $contextopts);
             $mform->setType('context'.$fileid, PARAM_INT);
             $mform->addHelpButton('context'.$fileid, 'sharingcontext', 'sharedresource');
@@ -70,13 +79,13 @@ class metadata_collect_form extends moodleform{
 
             $mform->addElement('checkbox', 'overwritedata'.$fileid, get_string('overwritemetadata', 'block_sharedresources'));
             $mform->setDefault('overwritedata'.$fileid, 0);
-            
-            // todo : get additional widgets that are enabled in search engine.
+
+            // TODO : Get additional widgets that are enabled in search engine.
         }
 
         $this->add_action_buttons(true);
     }
 
-    function validation($data, $files = null) {
+    public function validation($data, $files = null) {
     }
 }
