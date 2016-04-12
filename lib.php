@@ -95,6 +95,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
 
             // dispatch metadata into entry
             $mtdstandard = sharedresource_plugin_base::load_mtdstandard($CFG->pluginchoice);
+            $mtdstandard->entryid = $sharedresourceentryid;
             $mtdstandard->setTextElementValue($mtdstandard->getDescriptionElement()->name, '', $shentry->description);
             $mtdstandard->setTextElementValue($mtdstandard->getTitleElement()->name, '', $shentry->title);
             if (!empty($shentry->keywords)) {
@@ -132,6 +133,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
 
             // dispatch metadata into entry
             $mtdstandard = sharedresource_plugin_base::load_mtdstandard($CFG->pluginchoice);
+            $mtdstandard->entryid = $sharedentry->id;
             $mtdstandard->setTextElementValue($mtdstandard->getDescriptionElement()->name, '', $sharedentry->description);
             $mtdstandard->setTextElementValue($mtdstandard->getTitleElement()->name, '', $sharedentry->title);
             if (!empty($shentry->keywords)) {
