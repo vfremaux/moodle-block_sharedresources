@@ -19,7 +19,7 @@ class block_sharedresources extends block_base {
 
         $this->content = new stdClass;
         
-        $context = get_context_instance(CONTEXT_COURSE, $COURSE->id);
+        $context = context_course::instance($COURSE->id);
         if (!has_capability('moodle/course:manageactivities', $context)){
             $this->content->text = '';
             $this->content->footer = '';

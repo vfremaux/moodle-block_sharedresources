@@ -9,8 +9,6 @@ class import_collect_form extends moodleform{
 		$mform = $this->_form;
 
 		$mform->addElement('hidden', 'course');
-		$mform->setType('course', PARAM_INT);
-
 		$mform->addElement('filemanager', 'entries', get_string('filestoadd', 'block_sharedresources'));
 		
 		$this->add_action_buttons(true);

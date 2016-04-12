@@ -19,6 +19,7 @@ $string['importresourcesfromfilestitle'] = 'Import massif de ressources à parti
 $string['keywords'] = 'Mots-clefs';
 $string['overwritemetadata'] = 'Ecraser les métadonnées si existe';
 $string['publishincourse'] = 'Publier dans le cours';
+$string['pluginname'] = 'Ressources mutualisées (outils)';
 $string['title'] = 'Titre';
 $string['resourcename'] = 'Nom de la ressource';
 $string['checkall'] = 'Sélectionner tout';
