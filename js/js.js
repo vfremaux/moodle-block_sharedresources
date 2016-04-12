@@ -3,8 +3,8 @@
 function importuncheckall() {
     var fe = document.forms['importfilesasresources'].elements;
     for(var i = 0; i < fe.length; i++) {
-        if (fe[i].name && fe[i].name.match(/^file/)) {
-            fe[i].checked = false;
+    	if (fe[i].name && fe[i].name.match(/^file/)){
+        	fe[i].checked = false;
         }
     }
 }
@@ -12,8 +12,8 @@ function importuncheckall() {
 function importcheckall() {
     var fe = document.forms['importfilesasresources'].elements;
     for(var i = 0; i < fe.length; i++) {
-        if (fe[i].name && fe[i].name.match(/^file/)) {
-            fe[i].checked = true;
+    	if (fe[i].name && fe[i].name.match(/^file/)){
+        	fe[i].checked = true;
         }
     }
 }

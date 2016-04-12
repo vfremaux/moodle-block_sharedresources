@@ -26,5 +26,3 @@ $string['resourcename'] = 'Resource name';
 $string['checkall'] = 'Check all';
 $string['uncheckall'] = 'Uncheck all';
 $string['viewlibrary'] = 'View Library';
-$string['existsignorechanges'] = 'Resource {$a->title} of ID {$a->identifier} exists. Description will not be changed. ';
-$string['exists'] = 'Resource {$a->title} of ID {$a->identifier} exists. Metadata updated. ';

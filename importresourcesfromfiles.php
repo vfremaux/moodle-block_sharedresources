@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    block_sharedresources
- * @category   blocks
- * @author     Valery Fremaux <valery.fremaux@gmail.com>
+ * @package    blocks
+ * @subpackage block_sharedresources
+ * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  *
@@ -27,6 +27,7 @@
  * - user attached files
  * - active repositories
  */
+
 require('../../config.php');
 require_once($CFG->dirroot.'/mod/sharedresource/locallib.php');
 require_once($CFG->dirroot.'/blocks/sharedresources/import_collect_form.php');
@@ -42,7 +43,7 @@ if (!$course = $DB->get_record('course', array( 'id' => $courseid))) {
     print_error('coursemisconf');
 }
 
-// Security.
+/// Security
 
 require_login($course);
 $context = context_course::instance($course->id);
@@ -117,9 +118,8 @@ if ($step == 1) {
 
         sharedresources_process_entries($data2, $course);
 
-        if ($course->format == 'page') {
-            $page = course_page::get_current_page($course->id);
-            echo $OUTPUT->continue_button(new moodle_url('/course/view.php', array('id' => $courseid, 'page' => $page->id)));
+        if ($course->format == 'page'){
+            echo $OUTPUT->continue_button(new moodle_url('/course/view.php', array('id' => $courseid, 'action' => 'activities')));
         } else {
             echo $OUTPUT->continue_button(new moodle_url('/course/view.php', array('id' => $courseid)));
         }
