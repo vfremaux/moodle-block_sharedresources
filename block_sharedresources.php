@@ -1,43 +1,72 @@
-<?php //$Id: block_sharedresources.php,v 1.1 2013-02-13 21:58:19 wa Exp $
+<?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ *
+ * @package    blocks
+ * @subpackage block_sharedreosurce
+ * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
+ * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
+ */
 
 class block_sharedresources extends block_base {
+
     function init() {
         $this->title = get_string('blockname', 'block_sharedresources');
         $this->version = 2010043000;
     }
-    
+
     function has_config() {
         return false;
     }
 
-    function get_content(){
+    function get_content() {
         global $CFG, $COURSE;
 
-        if($this->content !== NULL) {
+        if($this->content !== null) {
             return $this->content;
         }
 
-        $this->content = new stdClass;
-        
+        $this->content = new stdClass();
+
         $context = context_course::instance($COURSE->id);
-        if (!has_capability('moodle/course:manageactivities', $context)){
+        if (!has_capability('moodle/course:manageactivities', $context)) {
             $this->content->text = '';
             $this->content->footer = '';
             return $this->content;
         }
 
-        
         $convertallstr = get_string('convertall', 'block_sharedresources');
-        $this->content->text = "<a href=\"{$CFG->wwwroot}/mod/sharedresource/admin_convertall.php?course={$COURSE->id}\">$convertallstr</a><br/><br/>";
+        $converturl = new moodle_url('/mod/sharedresource/admin_convertall.php', array('course' => $COURSE->id));
+        $this->content->text = '<a href="'.$converturl.'">'.$convertallstr.'</a><br/><br/>';
 
         $convertbackstr = get_string('convertback', 'block_sharedresources');
-        $this->content->text .= "<a href=\"{$CFG->wwwroot}/mod/sharedresource/admin_convertback.php?course=$COURSE->id\" title=\"{$convertbackstr}\">$convertbackstr</a><br/><br/>";
+        $converturl = new moodle_url('/mod/sharedresource/admin_convertback.php', array('course' => $COURSE->id));
+        $this->content->text .= '<a href="'.$converturl.'" title="'.$convertbackstr.'">'.$convertbackstr.'</a><br/><br/>';
 
         $importstr = get_string('importfromfiles', 'block_sharedresources');
-        $this->content->text .= "<a href=\"{$CFG->wwwroot}/blocks/sharedresources/importresourcesfromfiles.php?course=$COURSE->id\" title=\"{$importstr}\">$importstr</a><br/><br/>";
-		
-		$viewlibrarystr = get_string('viewlibrary', 'block_sharedresources');
-        $this->content->text .= "<a href=\"{$CFG->wwwroot}/local/sharedresources/index.php?course={$COURSE->id}\">$viewlibrarystr</a>";
+        $converturl = new moodle_url('/blocks/sharedresources/importresourcesfromfiles.php', array('course' => $COURSE->id));
+        $this->content->text .= '<a href="'.$converturl.'" title="'.$importstr.'">'.$importstr.'</a><br/><br/>';
+
+        $viewlibrarystr = get_string('viewlibrary', 'block_sharedresources');
+        $libraryurl = new moodle_url('/local/sharedresources/index.php', array('course' => $COURSE->id));
+        $this->content->text .= '<a href="'.$libraryurl.'">'.$viewlibrarystr.'</a>';
 
         $this->content->footer = '';
 
@@ -45,4 +74,3 @@ class block_sharedresources extends block_base {
     }
 }
 
-?>
