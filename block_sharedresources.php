@@ -14,7 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ *
+ * @package    blocks
+ * @subpackage block_sharedreosurce
+ * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
+ * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
+ */
+
 class block_sharedresources extends block_base {
+
     function init() {
         $this->title = get_string('blockname', 'block_sharedresources');
         $this->version = 2010043000;

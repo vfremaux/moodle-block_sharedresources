@@ -15,12 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Version details.
  *
- * @package    block_sharedresources
- * @category   blocks
- * @copyright  2008 Valery Fremaux (valery.fremaux@gmail.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     block_sharedresources
+ * @category    blocks
+ * @author      Valery Fremaux (valery.fremaux@gmail.com)
+ * @copyright   2008 Valery Fremaux (valery.fremaux@gmail.com)
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -32,3 +33,5 @@ $plugin->release = '2.9.0 Build(2013040102)';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->dependencies = array('mod_sharedresource' => 2013032600);
 
+// Non moodle attributes.
+$plugin->codeincrement = '2.9.0000';
