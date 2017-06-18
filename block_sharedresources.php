@@ -15,7 +15,6 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *
  * @package    block_sharedresources
  * @subpackage blocks
  * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
@@ -25,17 +24,16 @@
 
 class block_sharedresources extends block_base {
 
-    function init() {
+    public function init() {
         $this->title = get_string('blockname', 'block_sharedresources');
-        $this->version = 2010043000;
     }
 
-    function has_config() {
+    public function has_config() {
         return false;
     }
 
-    function get_content() {
-        global $CFG, $COURSE;
+    public function get_content() {
+        global $COURSE;
 
         if($this->content !== null) {
             return $this->content;

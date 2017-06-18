@@ -22,6 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  */
+defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir.'/formslib.php');
 
@@ -39,7 +40,7 @@ class metadata_collect_form extends moodleform {
         $mform->addElement('hidden', 'step', 2);
         $mform->setType('step', PARAM_INT);
 
-        $mform->addElement('hidden', 'entries'); // draft area item id
+        $mform->addElement('hidden', 'entries'); // Draft area item id.
         $mform->setType('entries', PARAM_INT);
 
         $fs = get_file_storage();
@@ -58,7 +59,8 @@ class metadata_collect_form extends moodleform {
             $mform->addElement('hidden', 'id'.$fileid, $fileid);
             $mform->setType('id'.$fileid, PARAM_INT);
 
-            $mform->addElement('text', 'title'.$fileid, get_string('title', 'block_sharedresources'), array('size' => 60));
+            $label = get_string('title', 'block_sharedresources');
+            $mform->addElement('text', 'title'.$fileid, $label, array('size' => 60));
             $mform->addRule('title'.$fileid, get_string('error'), 'required', '', 'client', false, false);
             $mform->setType('title'.$fileid, PARAM_CLEANHTML);
 
@@ -66,11 +68,13 @@ class metadata_collect_form extends moodleform {
             $mform->setType('description'.$fileid, PARAM_CLEANHTML);
             $mform->addRule('description'.$fileid, get_string('error'), 'required', '', 'client', false, false);
 
-            $mform->addElement('text', 'keywords'.$fileid, get_string('keywords', 'block_sharedresources'), array('size' => 30));
+            $label = get_string('keywords', 'block_sharedresources');
+            $mform->addElement('text', 'keywords'.$fileid, $label, array('size' => 30));
             $mform->setType('keywords'.$fileid, PARAM_TEXT);
 
             // Sharing contexts.
-            $mform->addElement('select', 'context'.$fileid, get_string('sharingcontext', 'sharedresource'), $contextopts);
+            $label = get_string('sharingcontext', 'sharedresource');
+            $mform->addElement('select', 'context'.$fileid, $label, $contextopts);
             $mform->setType('context'.$fileid, PARAM_INT);
             $mform->addHelpButton('context'.$fileid, 'sharingcontext', 'sharedresource');
 
@@ -86,6 +90,4 @@ class metadata_collect_form extends moodleform {
         $this->add_action_buttons(true);
     }
 
-    public function validation($data, $files = null) {
-    }
 }

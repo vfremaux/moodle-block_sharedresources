@@ -27,14 +27,11 @@
  * - user attached files
  * - active repositories
  */
-
 require('../../config.php');
 require_once($CFG->dirroot.'/mod/sharedresource/locallib.php');
-require_once($CFG->dirroot.'/blocks/sharedresources/import_collect_form.php');
-require_once($CFG->dirroot.'/blocks/sharedresources/metadata_collect_form.php');
+require_once($CFG->dirroot.'/blocks/sharedresources/forms/import_collect_form.php');
+require_once($CFG->dirroot.'/blocks/sharedresources/forms/metadata_collect_form.php');
 require_once($CFG->dirroot.'/blocks/sharedresources/lib.php');
-
-global $CFG;
 
 $courseid = optional_param('course', SITEID, PARAM_INT);
 $step = optional_param('step', 1, PARAM_INT);
@@ -49,7 +46,7 @@ require_login($course);
 $context = context_course::instance($course->id);
 require_capability('moodle/course:manageactivities', $context);
 
-// prepare the page.
+// Prepare the page.
 
 $PAGE->set_context($context);
 $PAGE->requires->js('/blocks/sharedresources/js/js.js');
@@ -63,7 +60,7 @@ $params = array('course' => $courseid);
 
 $PAGE->set_url($url, $params);
 
-/// Print header
+// Print header.
 
 if ($step == 1) {
 
@@ -102,10 +99,11 @@ if ($step == 1) {
 
     print($OUTPUT->footer($course));
 
-} elseif ($step == 2) {
+} else if ($step == 2) {
 
-    // we can process step 2
-    $form2 = new metadata_collect_form($url, array('entries' => $_POST['entries'])); // we need pass this value to build metdata form elements for collected items.
+    // We can process step 2.
+    // We need pass this value to build metdata form elements for collected items.
+    $form2 = new metadata_collect_form($url, array('entries' => $_POST['entries']));
 
     if ($form2->is_cancelled()) {
         redirect(new moodle_url('/blocks/sharedresources/importresourcesfromfiles.php', array('course' => $courseid)));
@@ -118,9 +116,11 @@ if ($step == 1) {
 
         sharedresources_process_entries($data2, $course);
 
+
         if ($course->format == 'page') {
             $page = course_page::get_current_page($course->id);
-            echo $OUTPUT->continue_button(new moodle_url('/course/view.php', array('id' => $courseid, 'page' => $page->id)));
+            $buttonurl = new moodle_url('/course/view.php', array('id' => $courseid, 'page' => $page->id));
+            echo $OUTPUT->continue_button($buttonurl);
         } else {
             echo $OUTPUT->continue_button(new moodle_url('/course/view.php', array('id' => $courseid)));
         }
@@ -128,5 +128,11 @@ if ($step == 1) {
         echo $OUTPUT->footer();
         exit;
     }
+
+    echo $OUTPUT->header();
+    echo $OUTPUT->heading(get_string('importresourcesfromfilestitle', 'block_sharedresources'));
+    $form2->display();
+    echo $OUTPUT->footer();
+
 }
 
