@@ -18,9 +18,7 @@
  * Blog tags block caps.
  *
  * @package    block_sharedresources
- * @category   blocks
- * @author     Valery Fremaux (valery.frmeaux@gmail.com)
- * @copyright  2009 Valery Fremaux <valery.fremaux@gmail.com>
+ * @copyright  Mark Nelson <markn@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

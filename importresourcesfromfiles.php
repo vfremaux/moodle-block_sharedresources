@@ -17,7 +17,7 @@
 /**
  * @package    block_sharedresources
  * @category   blocks
- * @author     Valery Fremaux <valery.fremaux@gmail.com>
+ * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  *
@@ -27,6 +27,7 @@
  * - user attached files
  * - active repositories
  */
+
 require('../../config.php');
 require_once($CFG->dirroot.'/mod/sharedresource/locallib.php');
 require_once($CFG->dirroot.'/blocks/sharedresources/import_collect_form.php');

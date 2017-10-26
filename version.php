@@ -19,19 +19,19 @@
  *
  * @package     block_sharedresources
  * @category    blocks
- * @author      Valery Fremaux (valery.fremaux@gmail.com)
+ * @author      Valery Fremaux <valery.fremaux@gmail.com>
  * @copyright   2008 Valery Fremaux (valery.fremaux@gmail.com)
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016011600;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2015050500;        // Requires this Moodle version
-$plugin->component = 'block_sharedresources'; // Full name of the plugin (used for diagnostics)
-$plugin->release = '2.9.0 Build(2013040102)'; 
-$plugin->maturity = MATURITY_STABLE;
+$plugin->version   = 2016011600;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->requires  = 2015050500;        // Requires this Moodle version.
+$plugin->component = 'block_sharedresources'; // Full name of the plugin (used for diagnostics).
+$plugin->release = '3.0.0 Build(2013040102)';
+$plugin->maturity = MATURITY_BETA;
 $plugin->dependencies = array('mod_sharedresource' => 2013032600);
 
 // Non moodle attributes.
-$plugin->codeincrement = '2.9.0000';
+$plugin->codeincrement = '3.0.0000';
