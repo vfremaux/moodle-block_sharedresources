@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
+
 /**
  * @package    block_sharedresources
  * @category   blocks
@@ -21,17 +23,15 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  */
-defined('MOODLE_INTERNAL') || die();
-
-require_once($CFG->dirroot.'/mod/sharedresource/classes/sharedresource_plugin_base.class.php');
+require_once($CFG->dirroot.'/mod/sharedresource/sharedresource_plugin_base.class.php');
 require_once($CFG->dirroot.'/mod/sharedresource/locallib.php');
 
 /**
- * processes a set of file entries to convert them as file ressources
- * 1. create a Moodle resource that uses the file
- * 2. create a Moodle course_module that attaches the resource to the course 
- * 3. create a page format page_item that puts the resource in the page
- */
+* processes a set of file entries to convert them as file ressources
+* 1. create a Moodle resource that uses the file
+* 2. create a Moodle course_module that attaches the resource to the course 
+* 3. create a page format page_item that puts the resource in the page
+*/
 function sharedresources_process_entries(&$data, &$course) {
     global $USER;
 
@@ -41,7 +41,7 @@ function sharedresources_process_entries(&$data, &$course) {
 
     $filestoprocess = $fs->get_area_files($usercontext->id, 'user', 'draft', $data->entries, "itemid, filepath, filename", false);
 
-    foreach ($filestoprocess as $file) {
+    foreach($filestoprocess as $file) {
 
         $fileid = $file->get_id();
         $metadata = new StdClass;
@@ -49,7 +49,7 @@ function sharedresources_process_entries(&$data, &$course) {
         $metadata->description = $data->{'description'.$fileid};
         $metadata->keywords = $data->{'keywords'.$fileid};
         $metadata->context = $data->{'context'.$fileid};
-        $metadata->publish = @$data->{'coursepublish'.$fileid};
+        $metadata->publish = $data->{'coursepublish'.$fileid};
         $metadata->overwrite = @$data->{'overwritedata'.$fileid};
 
         sharedresources_process_single_entry($file, $metadata, $course);
@@ -62,8 +62,6 @@ function sharedresources_process_entries(&$data, &$course) {
 function sharedresources_process_single_entry(stored_file $file, $metadata = array(), &$course) {
     global $DB, $CFG, $PAGE;
     static $pbm = null;
-
-    $config = get_config('sharedresource');
 
     if (is_null($pbm) && $course->format == 'page') {
         $pbm = new page_enabled_block_manager($PAGE);
@@ -103,7 +101,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
             print_string('builtentry', 'block_sharedresources', $shentry->identifier);
 
             // Dispatch metadata into entry.
-            $mtdstandard = \mod_sharedresource\plugin_base::load_mtdstandard($config->schema);
+            $mtdstandard = sharedresource_plugin_base::load_mtdstandard($CFG->pluginchoice);
             $mtdstandard->setEntry($sharedresourceentryid);
             $mtdstandard->setTextElementValue($mtdstandard->getDescriptionElement()->node, '', $shentry->description);
             $mtdstandard->setTextElementValue($mtdstandard->getTitleElement()->node, '', $shentry->title);
@@ -125,7 +123,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
 
             // Remap sharedresource with new file record.
             $DB->set_field('sharedresource_entry', 'file', $newfile->get_id(), array('identifier' => $identifier));
-        } catch (Exception $e) {
+        } catch(Exception $e) {
             mtrace('Error while saving file');
             print_object($e);
         }
@@ -143,7 +141,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
             $DB->update_record('sharedresource_entry', $sharedentry);
 
             // Dispatch metadata into entry.
-            $mtdstandard = \mod_sharedresource\plugin_base::load_mtdstandard($config->schema);
+            $mtdstandard = sharedresource_plugin_base::load_mtdstandard($CFG->pluginchoice);
             $mtdstandard->setEntry($sharedentry->id);
             $mtdstandard->setTextElementValue($mtdstandard->getDescriptionElement()->node, '', $sharedentry->description);
             $mtdstandard->setTextElementValue($mtdstandard->getTitleElement()->node, '', $sharedentry->title);
@@ -193,9 +191,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
                 $pageitem->cmid = $cm->coursemodule;
                 $pageitem->blockinstance = 0;
                 $pageitem->position = 'c';
-                $select = " pageid = ? AND position = 'c' ";
-                $params = array($pageitem->pageid);
-                $pageitem->sortorder = $DB->get_field_select('format_page_items', 'MAX(sortorder)', $select, $params) + 1;
+                $pageitem->sortorder = $DB->get_field_select('format_page_items', 'MAX(sortorder)', " pageid = $pageitem->pageid AND position = 'c' ") + 1;
                 $pageitem->visible = 1;
                 $pageitem->id = $DB->insert_record('format_page_items', $pageitem);
 
