@@ -37,7 +37,4 @@ class import_collect_form extends moodleform {
         $this->add_action_buttons(true);
 
     }
-
-    public function validation($data, $files = null) {
-    }
 }
