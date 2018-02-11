@@ -21,6 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  */
+defined('MOODLE_INTERNAL') || die();
 
 class block_sharedresources extends block_base {
 
@@ -33,7 +34,7 @@ class block_sharedresources extends block_base {
     }
 
     public function get_content() {
-        global $COURSE;
+        global $COURSE, $OUTPUT;
 
         if($this->content !== null) {
             return $this->content;
@@ -48,21 +49,27 @@ class block_sharedresources extends block_base {
             return $this->content;
         }
 
-        $convertallstr = get_string('convertall', 'block_sharedresources');
-        $converturl = new moodle_url('/mod/sharedresource/admin_convertall.php', array('course' => $COURSE->id));
-        $this->content->text = '<a href="'.$converturl.'">'.$convertallstr.'</a><br/><br/>';
+        if (!has_capability('repository/sharedresources:view', $context)) {
+            $this->content->text = '';
+            $this->content->footer = '';
+            return $this->content;
+        }
 
-        $convertbackstr = get_string('convertback', 'block_sharedresources');
-        $converturl = new moodle_url('/mod/sharedresource/admin_convertback.php', array('course' => $COURSE->id));
-        $this->content->text .= '<a href="'.$converturl.'" title="'.$convertbackstr.'">'.$convertbackstr.'</a><br/><br/>';
+        $template = new StdClass;
 
-        $importstr = get_string('importfromfiles', 'block_sharedresources');
-        $converturl = new moodle_url('/blocks/sharedresources/importresourcesfromfiles.php', array('course' => $COURSE->id));
-        $this->content->text .= '<a href="'.$converturl.'" title="'.$importstr.'">'.$importstr.'</a><br/><br/>';
+        $template->converttostr = get_string('convertall', 'block_sharedresources');
+        $template->converttourl = new moodle_url('/mod/sharedresource/admin_convertall.php', array('course' => $COURSE->id));
 
-        $viewlibrarystr = get_string('viewlibrary', 'block_sharedresources');
-        $libraryurl = new moodle_url('/local/sharedresources/index.php', array('course' => $COURSE->id));
-        $this->content->text .= '<a href="'.$libraryurl.'">'.$viewlibrarystr.'</a>';
+        $template->convertbackstr = get_string('convertback', 'block_sharedresources');
+        $template->convertbackurl = new moodle_url('/mod/sharedresource/admin_convertback.php', array('course' => $COURSE->id));
+
+        $template->importstr = get_string('importfromfiles', 'block_sharedresources');
+        $template->importurl = new moodle_url('/blocks/sharedresources/importresourcesfromfiles.php', array('course' => $COURSE->id));
+
+        $template->librarystr = get_string('viewlibrary', 'block_sharedresources');
+        $template->libraryurl = new moodle_url('/local/sharedresources/index.php', array('course' => $COURSE->id));
+
+        $this->content->text = $OUTPUT->render_from_template('block_sharedresources/block_content', $template);
 
         $this->content->footer = '';
 
