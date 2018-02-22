@@ -7,7 +7,6 @@ cache:
     - $HOME/.composer/cache
 
 php:
- - 5.6
  - 7.0
 
 env:
@@ -25,6 +24,7 @@ before_install:
 
 install:
   - moodle-plugin-ci add-plugin --branch $MOODLE_BRANCH vfremaux/moodle-mod_sharedresource
+  - moodle-plugin-ci add-plugin --branch $MOODLE_BRANCH vfremaux/moodle-local_sharedresources
   - moodle-plugin-ci install
 
 script:
