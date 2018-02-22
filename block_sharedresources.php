@@ -21,6 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  */
+defined('MOODLE_INTERNAL') || die();
 
 class block_sharedresources extends block_base {
 
@@ -48,13 +49,19 @@ class block_sharedresources extends block_base {
             return $this->content;
         }
 
+        if (!has_capability('repository/sharedresources:view', $context)) {
+            $this->content->text = '';
+            $this->content->footer = '';
+            return $this->content;
+        }
+
         $template = new StdClass;
 
-        $tempalte->converttostr = get_string('convertall', 'block_sharedresources');
-        $tempalte->converttourl = new moodle_url('/mod/sharedresource/admin_convertall.php', array('course' => $COURSE->id));
+        $template->converttostr = get_string('convertall', 'block_sharedresources');
+        $template->converttourl = new moodle_url('/mod/sharedresource/admin_convertall.php', array('course' => $COURSE->id));
 
         $template->convertbackstr = get_string('convertback', 'block_sharedresources');
-        $tempalte->convertbackurl = new moodle_url('/mod/sharedresource/admin_convertback.php', array('course' => $COURSE->id));
+        $template->convertbackurl = new moodle_url('/mod/sharedresource/admin_convertback.php', array('course' => $COURSE->id));
 
         $template->importstr = get_string('importfromfiles', 'block_sharedresources');
         $template->importurl = new moodle_url('/blocks/sharedresources/importresourcesfromfiles.php', array('course' => $COURSE->id));

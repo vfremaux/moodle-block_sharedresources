@@ -27,6 +27,14 @@ require_once($CFG->dirroot.'/mod/sharedresource/classes/sharedresource_plugin_ba
 require_once($CFG->dirroot.'/mod/sharedresource/locallib.php');
 
 /**
+ * This function is not implemented in this plugin, but is needed to mark
+ * the vf documentation custom volume availability.
+ */
+function block_sharedresources_supports_feature($feature) {
+    assert(1);
+}
+
+/**
  * processes a set of file entries to convert them as file ressources
  * 1. create a Moodle resource that uses the file
  * 2. create a Moodle course_module that attaches the resource to the course 

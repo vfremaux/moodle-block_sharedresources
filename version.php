@@ -33,4 +33,4 @@ $plugin->maturity = MATURITY_RC;
 $plugin->dependencies = array('mod_sharedresource' => 2013032600);
 
 // Non moodle attributes.
-$plugin->codeincrement = '3.1.0000';
+$plugin->codeincrement = '3.1.0001';
