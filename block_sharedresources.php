@@ -34,7 +34,7 @@ class block_sharedresources extends block_base {
     }
 
     public function get_content() {
-        global $COURSE, $OUTPUT;
+        global $COURSE, $OUTPUT, $DB;
 
         if($this->content !== null) {
             return $this->content;
@@ -43,13 +43,13 @@ class block_sharedresources extends block_base {
         $this->content = new stdClass();
 
         $context = context_course::instance($COURSE->id);
-        if (!has_capability('moodle/course:manageactivities', $context)) {
-            $this->content->text = '';
-            $this->content->footer = '';
-            return $this->content;
-        }
 
-        if (!has_capability('repository/sharedresources:view', $context)) {
+        $caps = array('repository/sharedresources:view',
+                      'repository/sharedresources:manage',
+                      'repository/sharedresources:create',
+                      'repository/sharedresources:use');
+
+        if (!has_any_capability($caps, $context)) {
             $this->content->text = '';
             $this->content->footer = '';
             return $this->content;
@@ -57,17 +57,33 @@ class block_sharedresources extends block_base {
 
         $template = new StdClass;
 
-        $template->converttostr = get_string('convertall', 'block_sharedresources');
-        $template->converttourl = new moodle_url('/mod/sharedresource/admin_convertall.php', array('course' => $COURSE->id));
+        if (has_capability('repository/sharedresources:create', $context)) {
+            $standardresourcesincourse = $DB->count_records('resource', array('course' => $COURSE->id));
+            $standardurlsincourse = $DB->count_records('url', array('course' => $COURSE->id));
+            if ($standardresourcesincourse || $standardurlsincourse) {
+                $template->converttostr = get_string('convertall', 'block_sharedresources');
+                $template->converttourl = new moodle_url('/mod/sharedresource/admin_convertall.php', array('course' => $COURSE->id));
+            }
+        }
 
-        $template->convertbackstr = get_string('convertback', 'block_sharedresources');
-        $template->convertbackurl = new moodle_url('/mod/sharedresource/admin_convertback.php', array('course' => $COURSE->id));
+        if (has_capability('moodle/course:manageactivities', $context)) {
+            $sharedincourse = $DB->count_records('sharedresource', array('course' => $COURSE->id));
+            if ($sharedincourse) {
+                $template->convertbackstr = get_string('convertback', 'block_sharedresources');
+                $template->convertbackurl = new moodle_url('/mod/sharedresource/admin_convertback.php', array('course' => $COURSE->id));
+            }
+        }
 
-        $template->importstr = get_string('importfromfiles', 'block_sharedresources');
-        $template->importurl = new moodle_url('/blocks/sharedresources/importresourcesfromfiles.php', array('course' => $COURSE->id));
+        if (has_capability('repository/sharedresources:create', $context)) {
+            $template->importstr = get_string('importfromfiles', 'block_sharedresources');
+            $template->importurl = new moodle_url('/blocks/sharedresources/importresourcesfromfiles.php', array('course' => $COURSE->id));
+        }
 
-        $template->librarystr = get_string('viewlibrary', 'block_sharedresources');
-        $template->libraryurl = new moodle_url('/local/sharedresources/index.php', array('course' => $COURSE->id));
+        if (has_capability('repository/sharedresources:view', $context) ||
+                has_capability('repository/sharedresources:use', $context)) {
+            $template->librarystr = get_string('viewlibrary', 'block_sharedresources');
+            $template->libraryurl = new moodle_url('/local/sharedresources/index.php', array('course' => $COURSE->id));
+        }
 
         $this->content->text = $OUTPUT->render_from_template('block_sharedresources/block_content', $template);
 
