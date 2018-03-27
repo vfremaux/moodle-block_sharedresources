@@ -29,18 +29,29 @@
     * modules Array of course modules
 }}
 
+<ul>
 {{#converttourl}}
-<a href="{{{converttourl}}}">{{{converttostr}}}</a><br/><br/>
+<div class="menu-item">
+<span class="fa fa-sign-in-alt icon" aria-hidden="true"></span> <a href="{{{converttourl}}}" >{{{converttostr}}}</a>
+</div>
 {{/converttourl}}
 
 {{#convertbackurl}}
-<a href="{{{convertbackurl}}}">{{{convertbackstr}}}</a><br/><br/>
+<div class="menu-item">
+<span class="fa fa-sign-out-alt icon" aria-hidden="true"></span> <a href="{{{convertbackurl}}}">{{{convertbackstr}}}</a>
+</div>
 {{/convertbackurl}}
 
 {{#importurl}}
-<a href="{{{importurl}}}">{{{importstr}}}</a><br/><br/>
+<div class="menu-item">
+<span class="fa fa-download icon" aria-hidden="true"></span> <a href="{{{importurl}}}">{{{importstr}}}</a>
+</div>
 {{/importurl}}
 
 {{#libraryurl}}
-<a href="{{{libraryurl}}}">{{{librarystr}}}</a><br/><br/>
+<div class="menu-item">
+<span class="fa fa-warehouse icon" aria-hidden="true"></span> <a href="{{{libraryurl}}}">{{{librarystr}}}</a>
+</div>
 {{/libraryurl}}
+
+</ul>
