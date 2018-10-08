@@ -14,23 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * Version details.
- *
- * @package    block_sharedresources
- * @category   blocks
- * @copyright  2008 Valery Fremaux (valery.fremaux@gmail.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+namespace block_sharedresources\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016011600;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2018042700;        // Requires this Moodle version.
-$plugin->component = 'block_sharedresources'; // Full name of the plugin (used for diagnostics).
-$plugin->release = '3.5.0 Build(2013040102)';
-$plugin->maturity = MATURITY_RC;
-$plugin->dependencies = array('mod_sharedresource' => 2013032600);
-
-// Non moodle attributes.
-$plugin->codeincrement = '3.5.0001';
+class provider implements \core_privacy\local\metadata\null_provider {
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}

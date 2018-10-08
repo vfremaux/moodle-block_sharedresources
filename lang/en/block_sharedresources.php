@@ -17,6 +17,9 @@
 $string['sharedresources:addinstance'] = 'Can add an instance';
 $string['sharedresources:myaddinstance'] = 'Can add an instance to My Page';
 
+// Privacy.
+$string['privacy:metadata'] = 'The Sharedresources block does not directly store any personal data about any user.';
+
 $string['pluginname'] = 'Shared Resources Tools';
 $string['blockname'] = 'Shared Resources Tools';
 $string['choosepathtoimport'] = 'Choose path where to import from:&ensp;';
