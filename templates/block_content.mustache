@@ -1,5 +1,5 @@
 {{!
-    This file is part of The Course Module Navigation Block
+    This file is part of The Sharedresources Block
 
     Moodle is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,43 +15,41 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template block-sharedresources/block_content
+    @template block_sharedresources/block_content
 
-    Block template for sharedresources tool
-
-    The purpose of this template is render a navigation block in course contexts. This template renders all the visible sections in a course.
+    Block template for displaying the sharedresources tool list
 
     Classes required for JS:
     * none
 
     Context variables required for this template:
-    * sections Array of course sections containing arrays of modules
-    * modules Array of course modules
+    * undocumented @see block's renderer for reference
 }}
-
+<!-- block_content -->
 <ul>
 {{#converttourl}}
 <div class="menu-item">
-<span class="fa fa-sign-in-alt icon" aria-hidden="true"></span> <a href="{{{converttourl}}}" >{{{converttostr}}}</a>
+<span class="fa fas fa-sign-in-alt icon" aria-hidden="true"></span> <a href="{{{converttourl}}}" >{{{converttostr}}}</a>
 </div>
 {{/converttourl}}
 
 {{#convertbackurl}}
 <div class="menu-item">
-<span class="fa fa-sign-out-alt icon" aria-hidden="true"></span> <a href="{{{convertbackurl}}}">{{{convertbackstr}}}</a>
+<span class="fa fas fa-sign-out-alt icon" aria-hidden="true"></span> <a href="{{{convertbackurl}}}">{{{convertbackstr}}}</a>
 </div>
 {{/convertbackurl}}
 
 {{#importurl}}
 <div class="menu-item">
-<span class="fa fa-download icon" aria-hidden="true"></span> <a href="{{{importurl}}}">{{{importstr}}}</a>
+<span class="fa fas fa-download icon" aria-hidden="true"></span> <a href="{{{importurl}}}">{{{importstr}}}</a>
 </div>
 {{/importurl}}
 
 {{#libraryurl}}
 <div class="menu-item">
-<span class="fa fa-warehouse icon" aria-hidden="true"></span> <a href="{{{libraryurl}}}">{{{librarystr}}}</a>
+<span class="fa fas fa-warehouse icon" aria-hidden="true"></span> <a href="{{{libraryurl}}}">{{{librarystr}}}</a>
 </div>
 {{/libraryurl}}
 
 </ul>
+<!-- /block_content -->
