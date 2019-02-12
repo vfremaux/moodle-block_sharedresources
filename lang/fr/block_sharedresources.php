@@ -14,8 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-$string['sharedresources:addinstance'] = 'Peut ajouter une instance';
-$string['sharedresources:myaddinstance'] = 'Peut ajouter une instance à la page personnalisée';
+$string['sharedresources:addinstance'] = 'Ajouter une instance au cours';
+$string['sharedresources:myaddinstance'] = 'Ajouter une instance à la page personnalisée';
+
+// Privacy.
+$string['privacy:metadata'] = 'Le bloc Ressources mutualisées ne détient directement aucune donnée relative aux utilisateurs.';
 
 $string['blockname'] = 'Ressources mutualisées';
 $string['builtentry'] = 'Ressource mutualisée enregistrée sous ID {$a}<br/>';
