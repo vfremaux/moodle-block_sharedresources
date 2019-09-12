@@ -36,7 +36,7 @@ class block_sharedresources extends block_base {
     public function get_content() {
         global $COURSE, $OUTPUT, $DB;
 
-        if($this->content !== null) {
+        if ($this->content !== null) {
             return $this->content;
         }
 

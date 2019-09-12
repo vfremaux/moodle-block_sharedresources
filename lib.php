@@ -37,7 +37,7 @@ function block_sharedresources_supports_feature($feature) {
 /**
  * processes a set of file entries to convert them as file ressources
  * 1. create a Moodle resource that uses the file
- * 2. create a Moodle course_module that attaches the resource to the course 
+ * 2. create a Moodle course_module that attaches the resource to the course
  * 3. create a page format page_item that puts the resource in the page
  */
 function sharedresources_process_entries(&$data, &$course) {
@@ -79,7 +79,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
 
     // Create moodle resource.
 
-    $module = $DB->get_record('modules', array('name'=> 'sharedresource'));
+    $module = $DB->get_record('modules', array('name' => 'sharedresource'));
 
     // Check for sharedresourceentry and add if not here.
 
@@ -135,7 +135,6 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
             $DB->set_field('sharedresource_entry', 'file', $newfile->get_id(), array('identifier' => $identifier));
         } catch (Exception $e) {
             mtrace('Error while saving file');
-            print_object($e);
         }
 
     } else {
