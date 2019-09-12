@@ -39,6 +39,8 @@ function block_sharedresources_supports_feature($feature) {
  * 1. create a Moodle resource that uses the file
  * 2. create a Moodle course_module that attaches the resource to the course
  * 3. create a page format page_item that puts the resource in the page
+  * @param arrayref &$data a bulk of entries and metadata.
+  * @param objectref &$course the course
  */
 function sharedresources_process_entries(&$data, &$course) {
     global $USER;
@@ -67,6 +69,12 @@ function sharedresources_process_entries(&$data, &$course) {
     $fs->delete_area_files($usercontext->id, 'user', 'draft', $data->entries);
 }
 
+/**
+ * Processes one single file to import in course as sharedresource
+ * @param stored_file $file file to process
+ * @param array $metadata metadata array
+ * @param objectref &$course
+ */
 function sharedresources_process_single_entry(stored_file $file, $metadata = array(), &$course) {
     global $DB, $CFG, $PAGE;
     static $pbm = null;
