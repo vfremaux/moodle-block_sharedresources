@@ -14,6 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * EN language strings.
+ *
+ * @package    block_sharedresources
+ * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
+ * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
+ */
+
 $string['sharedresources:addinstance'] = 'Can add an instance';
 $string['sharedresources:myaddinstance'] = 'Can add an instance to My Page';
 

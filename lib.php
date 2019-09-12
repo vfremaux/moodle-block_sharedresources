@@ -37,8 +37,10 @@ function block_sharedresources_supports_feature($feature) {
 /**
  * processes a set of file entries to convert them as file ressources
  * 1. create a Moodle resource that uses the file
- * 2. create a Moodle course_module that attaches the resource to the course 
+ * 2. create a Moodle course_module that attaches the resource to the course
  * 3. create a page format page_item that puts the resource in the page
+ * @param arrayref &$data a bulk of entries and metadata.
+ * @param objectref &$course the course
  */
 function sharedresources_process_entries(&$data, &$course) {
     global $USER;
@@ -67,6 +69,12 @@ function sharedresources_process_entries(&$data, &$course) {
     $fs->delete_area_files($usercontext->id, 'user', 'draft', $data->entries);
 }
 
+/**
+ * Processes one single file to import in course as sharedresource
+ * @param stored_file $file file to process
+ * @param array $metadata metadata array
+ * @param objectref &$course
+ */
 function sharedresources_process_single_entry(stored_file $file, $metadata = array(), &$course) {
     global $DB, $CFG, $PAGE;
     static $pbm = null;
@@ -79,7 +87,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
 
     // Create moodle resource.
 
-    $module = $DB->get_record('modules', array('name'=> 'sharedresource'));
+    $module = $DB->get_record('modules', array('name' => 'sharedresource'));
 
     // Check for sharedresourceentry and add if not here.
 
@@ -95,7 +103,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
         $shentry->remoteid = '';
         $shentry->file = $file->get_id();
         $shentry->url = $CFG->wwwroot.'/mod/sharedresource/view.php?identifier='.$identifier;
-        $shentry->lang = ''; // not more used
+        $shentry->lang = ''; // Not more used.
         $shentry->description = @$metadata->description;
         $shentry->keywords = @$metadata->keywords;
         $shentry->timemodified = time();
@@ -135,7 +143,6 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
             $DB->set_field('sharedresource_entry', 'file', $newfile->get_id(), array('identifier' => $identifier));
         } catch (Exception $e) {
             mtrace('Error while saving file');
-            print_object($e);
         }
 
     } else {
