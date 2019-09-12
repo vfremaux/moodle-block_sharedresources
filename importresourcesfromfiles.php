@@ -23,7 +23,7 @@
  *
  * This page provides facility to push resources from the accessible repositories
  * as sharedresources
- * Handled repositories are : 
+ * Handled repositories are :
  * - user attached files
  * - active repositories
  */
