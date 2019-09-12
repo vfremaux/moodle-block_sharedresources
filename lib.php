@@ -39,8 +39,8 @@ function block_sharedresources_supports_feature($feature) {
  * 1. create a Moodle resource that uses the file
  * 2. create a Moodle course_module that attaches the resource to the course
  * 3. create a page format page_item that puts the resource in the page
-  * @param arrayref &$data a bulk of entries and metadata.
-  * @param objectref &$course the course
+ * @param arrayref &$data a bulk of entries and metadata.
+ * @param objectref &$course the course
  */
 function sharedresources_process_entries(&$data, &$course) {
     global $USER;
@@ -103,7 +103,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
         $shentry->remoteid = '';
         $shentry->file = $file->get_id();
         $shentry->url = $CFG->wwwroot.'/mod/sharedresource/view.php?identifier='.$identifier;
-        $shentry->lang = ''; // not more used
+        $shentry->lang = ''; // Not more used.
         $shentry->description = @$metadata->description;
         $shentry->keywords = @$metadata->keywords;
         $shentry->timemodified = time();
