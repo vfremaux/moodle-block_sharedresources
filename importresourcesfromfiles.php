@@ -16,14 +16,13 @@
 
 /**
  * @package    block_sharedresources
- * @category   blocks
  * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  *
  * This page provides facility to push resources from the accessible repositories
  * as sharedresources
- * Handled repositories are : 
+ * Handled repositories are :
  * - user attached files
  * - active repositories
  */
