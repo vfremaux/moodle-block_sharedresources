@@ -15,8 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Form to collect files to import.
+ *
  * @package    block_sharedresources
- * @category   blocks
  * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
@@ -25,8 +26,14 @@ defined('MOODLE_INTERNAL') or die();
 
 require_once($CFG->libdir.'/formslib.php');
 
+/**
+ * Form implementation
+ */
 class import_collect_form extends moodleform {
 
+    /**
+     * Form definition
+     */
     public function definition() {
 
         $mform = $this->_form;

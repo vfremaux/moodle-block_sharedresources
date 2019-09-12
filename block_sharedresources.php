@@ -16,13 +16,16 @@
 
 /**
  * @package    block_sharedresources
- * @subpackage blocks
  * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  */
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Main class for block Sharedresources.
+ * Block provides a set of resource integration/conversion helpers.
+ */
 class block_sharedresources extends block_base {
 
     public function init() {
