@@ -60,6 +60,8 @@ class block_sharedresources extends block_base {
 
         $template = new StdClass;
 
+        $template->advanced = has_capability('block/sharedresources:advancedfeatures', $context);
+
         if (has_capability('repository/sharedresources:create', $context)) {
             $standardresourcesincourse = $DB->count_records('resource', array('course' => $COURSE->id));
             $standardurlsincourse = $DB->count_records('url', array('course' => $COURSE->id));
