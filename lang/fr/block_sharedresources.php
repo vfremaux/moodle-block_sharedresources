@@ -25,6 +25,7 @@
 
 $string['sharedresources:addinstance'] = 'Ajouter une instance au cours';
 $string['sharedresources:myaddinstance'] = 'Ajouter une instance à la page personnalisée';
+$string['sharedresources:advancedfeatures'] = 'Utiliser les fonctionnalités avancées';
 
 // Privacy.
 $string['privacy:metadata'] = 'Le bloc Ressources mutualisées ne détient directement aucune donnée relative aux utilisateurs.';
