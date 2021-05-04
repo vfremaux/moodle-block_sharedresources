@@ -1,0 +1,68 @@
+{{!
+    This file is part of The Sharedresources Block
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_sharedresources/block_content
+
+    Block template for displaying the sharedresources tool list
+
+    Classes required for JS:
+    * none
+
+    Context variables required for this template
+    * converttourl
+    * convertbackurl
+    * importurl
+    * libraryurl
+
+    Example context (json):
+    {
+        "converttourl": "http://example.moodle.org/mod/sharedresource/admin_convertall.php?course=1",
+        "convertbackurl": "http://example.moodle.org/mod/sharedresource/admin_convertback.php?course=1",
+        "convertbackurl": "http://example.moodle.org/blocks/sharedresources/importresourcesfromfiles.php?course=1",
+        "libraryurl": "http://exmaple.moodle.org/local/sharedresources/index.php?course=1"
+    }
+}}
+<!-- block_sharedresources/block_content -->
+<ul>
+{{#advanced}}
+{{#converttourl}}
+<div class="menu-item">
+<span class="fa fas fa-sign-in-alt icon" aria-hidden="true"></span> <a href="{{{converttourl}}}" >{{#str}}convertto, block_sharedresources{{/str}}</a>
+</div>
+{{/converttourl}}
+
+{{#convertbackurl}}
+<div class="menu-item">
+<span class="fa fas fa-sign-out-alt icon" aria-hidden="true"></span> <a href="{{{convertbackurl}}}">{{#str}}convertback, block_sharedresources{{/str}}</a>
+</div>
+{{/convertbackurl}}
+{{/advanced}}
+
+{{#importurl}}
+<div class="menu-item">
+<span class="fa fas fa-download icon" aria-hidden="true"></span> <a href="{{{importurl}}}">{{#str}}importfromfiles, block_sharedresources{{/str}}</a>
+</div>
+{{/importurl}}
+
+{{#libraryurl}}
+<div class="menu-item">
+<span class="fa fas fa-warehouse icon" aria-hidden="true"></span> <a href="{{{libraryurl}}}">{{#str}}viewlibrary, block_sharedresources{{/str}}</a>
+</div>
+{{/libraryurl}}
+
+</ul>
+<!-- /block_sharedresources/block_content -->
