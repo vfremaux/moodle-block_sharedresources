@@ -56,7 +56,7 @@ $capabilities = array(
         'contextlevel' => CONTEXT_BLOCK,
         'archetypes' => array(
             'manager' => CAP_ALLOW,
-            'cousecreator' => CAP_ALLOW,
+            'coursecreator' => CAP_ALLOW,
         ),
     ),
 );
