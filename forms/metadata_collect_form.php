@@ -18,7 +18,7 @@
  * Form for collecting metadata associated to files to import.
  *
  * @package    block_sharedresources
- * @author     Valery Fremaux <valery.fremaux@club-internet.fr>
+ * @author     Valery Fremaux <valery.fremaux@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
  */
