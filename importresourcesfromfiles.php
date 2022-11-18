@@ -117,7 +117,7 @@ if ($step == 1) {
 
 
         if ($course->format == 'page') {
-            $page = course_page::get_current_page($course->id);
+            $page = \format\page\course_page::get_current_page($course->id);
             $buttonurl = new moodle_url('/course/view.php', array('id' => $courseid, 'page' => $page->id));
             echo $OUTPUT->continue_button($buttonurl);
         } else {

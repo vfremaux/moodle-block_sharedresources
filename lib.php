@@ -202,7 +202,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
             if ($course->format == 'page') {
                 // Add a page_item.
                 include_once($CFG->dirroot.'/course/format/page/page.class.php');
-                $page = course_page::get_current_page($course->id);
+                $page = \format\page\course_page::get_current_page($course->id);
                 $pageitem = new StdClass;
                 $pageitem->pageid = $page->id;
                 $pageitem->cmid = $cm->coursemodule;
