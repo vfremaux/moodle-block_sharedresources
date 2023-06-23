@@ -36,6 +36,7 @@ $string['choosepathtoimport'] = 'Choose path where to import from:&ensp;';
 $string['constructed'] = 'Constructed resource instance as {$a}<br/>';
 $string['builtentry'] = 'Shared resource registered as {$a}<br/>';
 $string['convertall'] = 'Convert local to shared resources';
+$string['convertto'] = 'Convert to';
 $string['convertback'] = 'Convert shared in to local resources';
 $string['existsupdating'] = 'This resource exists with title "{$a}". Title unchanged. Updating metadata only.';
 $string['filename'] = 'File name';
