@@ -35,6 +35,7 @@ $string['builtentry'] = 'Ressource mutualisée enregistrée sous ID {$a}<br/>';
 $string['constructed'] = 'Ressource instanciée : ID {$a}<br/>';
 $string['convertall'] = 'Mutualiser les ressources du cours';
 $string['convertback'] = 'Transformer en ressources du cours';
+$string['convertto'] = 'Convertir vers ';
 $string['choosepathtoimport'] = 'Choisir le répertoire à importer&nbsp;:&ensp;';
 $string['existsupdating'] = 'Cette ressource existe sous le titre : "{$a}" (inchangé). Les métadonnées sont mises à jour.';
 $string['filename'] = 'Nom du fichier ressource';
