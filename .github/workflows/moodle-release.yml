@@ -25,7 +25,7 @@ jobs:
   release-at-moodle-org:
     runs-on: ubuntu-latest
     env:
-      PLUGIN: blocks_sharedresources
+      PLUGIN: block_sharedresources
       CURL: curl -s
       ENDPOINT: https://moodle.org/webservice/rest/server.php
       TOKEN: ${{ secrets.MOODLE_ORG_TOKEN }}
@@ -39,8 +39,11 @@ jobs:
             TAGNAME="${{ github.event.inputs.tag }}"
           elif [[ $GITHUB_REF = refs/tags/* ]]; then
             TAGNAME="${GITHUB_REF##*/}"
+          elif [[ $GITHUB_REF = refs/heads/* ]]; then
+            TAGNAME="${GITHUB_REF##*/}"
           fi
           if [[ -z "${TAGNAME}" ]]; then
+            echo "GITHUB_REF : ${GITHUB_REF}"
             echo "No tag name has been provided!"
             exit 1
           fi
