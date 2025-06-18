@@ -35,3 +35,4 @@ $plugin->dependencies = array('mod_sharedresource' => 2013032600);
 
 // Non moodle attributes.
 $plugin->codeincrement = '4.5.0002';
+$plugin->privacy = 'public';
