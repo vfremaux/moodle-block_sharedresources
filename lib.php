@@ -75,7 +75,7 @@ function sharedresources_process_entries(&$data, &$course) {
  * @param array $metadata metadata array
  * @param objectref &$course
  */
-function sharedresources_process_single_entry(stored_file $file, $metadata = array(), &$course) {
+function sharedresources_process_single_entry(stored_file $file, $metadata = array(), &$course = null) {
     global $DB, $CFG, $PAGE;
     static $pbm = null;
 
@@ -202,7 +202,7 @@ function sharedresources_process_single_entry(stored_file $file, $metadata = arr
             if ($course->format == 'page') {
                 // Add a page_item.
                 include_once($CFG->dirroot.'/course/format/page/page.class.php');
-                $page = \format\page\course_page::get_current_page($course->id);
+                $page = \format_page\course_page::get_current_page($course->id);
                 $pageitem = new StdClass;
                 $pageitem->pageid = $page->id;
                 $pageitem->cmid = $cm->coursemodule;
